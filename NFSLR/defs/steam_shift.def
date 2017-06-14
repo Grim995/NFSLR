@@ -1,0 +1,4 @@
+Name: "Need for Speed: SHIFT [Steam]"
+Dll: "Slightlymad.dll"
+Classpath: "NFSLR.Slightlymad.SteamSHIFT"
+Module: "shift"

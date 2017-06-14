@@ -1,0 +1,4 @@
+Name: "Need for Speed: Most Wanted v1.2"
+Dll: "EAGL4.dll"
+Classpath: "NFSLR.EAGL4.MW12"
+Module: "speed"
