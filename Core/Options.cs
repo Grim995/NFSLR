@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -153,6 +154,8 @@ namespace NFSLR.Core
                 }
             
             }
+            if (tok != "")
+                val = tok;
             if (name == null || val == null)
                 throw new Exception();
             Set(name, val);
@@ -163,6 +166,25 @@ namespace NFSLR.Core
         {
             foreach (string t in text)
                 ParseString(t);
+        }
+
+        public void Save(string filepath)
+        {
+            StreamWriter sw = new StreamWriter(filepath);
+            Type t = this.GetType();
+            foreach(PropertyInfo inf in t.GetProperties())
+            {
+                foreach(object attr in inf.GetCustomAttributes())
+                {
+                    if(attr is PropertyAttribute)
+                    {
+                        bool isString = inf.PropertyType == typeof(string);
+                        string fmt = isString ? "{0}: \"{1}\"" : "{0}: {1}";
+                        sw.WriteLine(fmt, inf.Name, inf.GetValue(this).ToString());
+                    }
+                }
+            }
+            sw.Close();
         }
     }
 }

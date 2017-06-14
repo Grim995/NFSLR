@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,10 +20,37 @@ namespace NFSLR.Core
         GameTime timer;
         IGame game;
         GameProcess proc;
+        Settings s;
+
+        private void LoadDefaultSettings()
+        {
+            s.BkColor = BackColor.ToArgb();
+            s.ResetHKey = (int)Keys.NumPad3;
+            s.StarHKey = (int)Keys.NumPad0;
+            s.StopHKey = (int)Keys.Decimal;
+            s.TColor = label1.ForeColor.ToArgb();
+            s.Save("settings.def");
+        }
+
+        private void RefreshSettings()
+        {
+            BackColor = Color.FromArgb(s.BkColor);
+            label1.ForeColor = Color.FromArgb(s.TColor);
+            s.Save("settings.def");
+        }
+
         public TimerForm(string filepath, string classpath, string process)
         {
             MessageBox.Show("Loading " + filepath + "\nClasspath " + classpath, "Alert!");
             InitializeComponent();
+            s = new Settings();
+            if (!File.Exists("settings.def"))
+                LoadDefaultSettings();
+            else
+            {
+                s.Parse(File.ReadAllLines("settings.def"));
+                RefreshSettings();
+            }
             KeyHook.SharedInstance.OnKeyPressed += OnGlobalKey;
             proc = GameProcess.OpenGameProcess(process);
             LoadGame(filepath, classpath);
@@ -79,6 +107,13 @@ namespace NFSLR.Core
         private void TimerForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm sForm = new SettingsForm(s);
+            sForm.ShowDialog();
+            RefreshSettings();
         }
     }
 }

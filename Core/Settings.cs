@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NFSLR.Core
 {
-    class Settings : Options
+    public class Settings : Options
     {
         [Property]
         public int BkColor
