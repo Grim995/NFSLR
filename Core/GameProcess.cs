@@ -60,6 +60,12 @@ namespace NFSLR.Core
             {
                 lock(lockObj)
                 {
+                    if (isOpen)
+                    {
+                        isOpen = !gameProcess.HasExited;
+                        if (!isOpen)
+                            OpenProcessAsync(processName);
+                    }
                     return isOpen;
                 }
             }
