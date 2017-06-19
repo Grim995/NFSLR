@@ -37,5 +37,30 @@ namespace NFSLR.Core
                 }
             }
         }
+
+        private void HKBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            switch((string)(sender as TextBox).Tag)
+            {
+                case "0":
+                    settings.StarHKey = (int)e.KeyData;
+                    break;
+                case "1":
+                    settings.StopHKey = (int)e.KeyData;
+                    break;
+                case "2":
+                    settings.ResetHKey = (int)e.KeyData;
+                    break;
+            }
+            (sender as TextBox).Text = KeyToText(e.KeyData);
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+        }
+
+        private string KeyToText(Keys key)
+        {
+            KeysConverter conv = new KeysConverter();
+            return conv.ConvertToString(key);
+        }
     }
 }
