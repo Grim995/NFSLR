@@ -38,9 +38,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.resetHKBox = new System.Windows.Forms.TextBox();
+            this.stopHKBox = new System.Windows.Forms.TextBox();
+            this.startHKBox = new System.Windows.Forms.TextBox();
             this.visualsBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -99,9 +99,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.resetHKBox);
+            this.groupBox1.Controls.Add(this.stopHKBox);
+            this.groupBox1.Controls.Add(this.startHKBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 227);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(503, 207);
@@ -136,30 +136,32 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Start hotkey";
             // 
-            // textBox3
+            // resetHKBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(6, 71);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Tag = "2";
+            this.resetHKBox.Location = new System.Drawing.Point(6, 71);
+            this.resetHKBox.Name = "resetHKBox";
+            this.resetHKBox.Size = new System.Drawing.Size(100, 20);
+            this.resetHKBox.TabIndex = 2;
+            this.resetHKBox.Tag = "2";
+            this.resetHKBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HKBoxKeyDown);
             // 
-            // textBox2
+            // stopHKBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Tag = "1";
+            this.stopHKBox.Location = new System.Drawing.Point(6, 45);
+            this.stopHKBox.Name = "stopHKBox";
+            this.stopHKBox.Size = new System.Drawing.Size(100, 20);
+            this.stopHKBox.TabIndex = 1;
+            this.stopHKBox.Tag = "1";
+            this.stopHKBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HKBoxKeyDown);
             // 
-            // textBox1
+            // startHKBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Tag = "0";
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HKBoxKeyDown);
+            this.startHKBox.Location = new System.Drawing.Point(6, 19);
+            this.startHKBox.Name = "startHKBox";
+            this.startHKBox.Size = new System.Drawing.Size(100, 20);
+            this.startHKBox.TabIndex = 0;
+            this.startHKBox.Tag = "0";
+            this.startHKBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HKBoxKeyDown);
             // 
             // SettingsForm
             // 
@@ -191,8 +193,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox resetHKBox;
+        private System.Windows.Forms.TextBox stopHKBox;
+        private System.Windows.Forms.TextBox startHKBox;
     }
 }

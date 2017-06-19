@@ -17,6 +17,9 @@ namespace NFSLR.Core
         {
             fgPanel.BackColor = Color.FromArgb(settings.BkColor);
             textPanel.BackColor = Color.FromArgb(settings.TColor);
+            startHKBox.Text = KeyToText((Keys)settings.StarHKey);
+            stopHKBox.Text = KeyToText((Keys)settings.StopHKey);
+            resetHKBox.Text = KeyToText((Keys)settings.ResetHKey);
         }
 
         private void ColorPanelClick(object sender, EventArgs e)

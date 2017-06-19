@@ -15,6 +15,7 @@ namespace NFSLR.Core
         IGame game;
         GameProcess proc;
         Settings s;
+        bool hotkeysEnabled = true;
 
         private void LoadDefaultSettings()
         {
@@ -55,11 +56,13 @@ namespace NFSLR.Core
 
         private void OnGlobalKey(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.NumPad0)
+            if (!hotkeysEnabled)
+                return;
+            if (e.KeyCode == (Keys)s.StarHKey)
                 Start();
-            if (e.KeyCode == Keys.Decimal)
+            if (e.KeyCode == (Keys)s.StopHKey)
                 Stop();
-            if (e.KeyCode == Keys.NumPad3)
+            if (e.KeyCode == (Keys)s.ResetHKey)
                 Reset();
         }
 
@@ -105,9 +108,11 @@ namespace NFSLR.Core
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            hotkeysEnabled = false;
             SettingsForm sForm = new SettingsForm(s);
             sForm.ShowDialog();
             RefreshSettings();
+            hotkeysEnabled = true;
         }
     }
 }
