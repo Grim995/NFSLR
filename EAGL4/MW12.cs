@@ -10,19 +10,19 @@ namespace NFSLR.EAGL4
         protected int firstLoadingAddr;
         protected int secondLoadingAddr;
         protected int pointerBase;
+        protected int stateAddress;
+        protected int state;
 
         private long timePassed = 0;
-
-        //StreamWriter w;
 
         public virtual bool Init(GameProcess process)
         {
             firstLoadingAddr = 0x00924860;
             secondLoadingAddr = 0x00910ED0;
             pointerBase = 0x0091C8C8;
+            stateAddress = 0x0091FE14;
             prc = process;
             loading = false;
-            //w = new StreamWriter("log.log");
             return true;
         }
 
@@ -42,20 +42,24 @@ namespace NFSLR.EAGL4
 
         public virtual void RefreshStatus()
         {
+            state = prc.ReadInt32(stateAddress);
+            if(state == 1)
+            {
+                loading = true;
+                return;
+            }
             if (!prc.IsOpen)
             {
                 loading = false;
                 return;
             }
             int stat = prc.ReadInt32(firstLoadingAddr);
-            //w.WriteLine("{0:X}: {1}", firstLoadingAddr, stat);
             if (stat != 0)
             {
                 loading = true;
                 return;
             }
             stat = prc.ReadInt32(secondLoadingAddr);
-           // w.WriteLine("{0:X}: {1}", secondLoadingAddr, stat);
             if (stat != 0)
             {
                 loading = true;
@@ -63,24 +67,12 @@ namespace NFSLR.EAGL4
             }
             loading = false;
 
-            /*{
-                w.WriteLine("Pointer path for {0:X}", pointerBase);
-                int t = prc.ReadInt32(pointerBase);
-                w.WriteLine("{0:X} -> {1:X}", pointerBase, t);
-                int b = prc.ReadInt32(t + 0xCC);
-                w.WriteLine("[{0:X} + 0xCC] -> {1:x}", t, b);
-                t = prc.ReadInt32(b + 0x604);
-                w.WriteLine("{0:X} + 0x604 -> {1:X}", b, t);
-            }*/
-
             stat = prc.ReadInt32Path(pointerBase, 0xCC, 0x604);
-            //w.WriteLine("{0:X}: {1:X}", pointerBase, stat);
             if (stat != 0)
             {
                 loading = true;
                 return;
             }
-            //w.Flush();
         }
     }
 }
