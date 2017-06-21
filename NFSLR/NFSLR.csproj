@@ -87,6 +87,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="defs\carbon14.def">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="defs\mw12.def">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

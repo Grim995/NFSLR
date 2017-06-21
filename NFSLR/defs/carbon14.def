@@ -1,0 +1,4 @@
+﻿Name: "Need for Speed: Carbon v1.4 CE"
+Dll: "EAGL4.dll"
+Classpath: "NFSLR.EAGL4.Carbon14"
+Module: "nfsc"

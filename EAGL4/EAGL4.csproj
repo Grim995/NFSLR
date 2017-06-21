@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carbon14.cs" />
     <Compile Include="EAGLCommon.cs" />
     <Compile Include="MW12.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
