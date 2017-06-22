@@ -44,6 +44,8 @@
     <Compile Include="EAGLCommon.cs" />
     <Compile Include="MW12.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UG2.cs" />
+    <Compile Include="UG212EU.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
