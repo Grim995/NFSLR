@@ -17,6 +17,7 @@ namespace NFSLR.EAGL4
         public override bool Init(GameProcess process)
         {
             addr = 0x00863774;
+            nisAddr = 0x0018DBBC;
             return base.Init(process);
         }
     }
